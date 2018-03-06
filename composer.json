@@ -1,0 +1,40 @@
+{
+    "name": "olla/core",
+    "type": "library",
+    "description": "Olla Core",
+    "keywords": ["REST", "GRAPHQL"],
+    "homepage": "https://olla.tech/api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Olla Tech",
+            "email": "contact@olla.tech",
+            "homepage": "https://olla.tech"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "olla/prisma": "*",
+        "olla/flow": "*",
+        "olla/theme": "*"
+    },
+    "require-dev": {
+        
+    },
+    "conflict": {
+    },
+    "suggest": {
+        
+    },
+    "autoload": {
+        "psr-4": { "Olla\\Core\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Olla\\Core\\Tests\\": "tests/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
