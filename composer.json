@@ -16,7 +16,9 @@
         "php": ">=7.0",
         "olla/prisma": "*",
         "olla/flow": "*",
-        "olla/theme": "*"
+        "olla/theme": "*",
+        "olla/json": "*",
+        "olla/resource": "*"
     },
     "require-dev": {
         
