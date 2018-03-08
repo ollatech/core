@@ -4,9 +4,9 @@ namespace Olla\Core\Controller;
 use Olla\Core\Resolver\ResolverInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class ViewController extends BaseController
+class AdminController extends BaseController
 {
-   
+    
     public function __invoke() {
         $request = $this->getRequest();
         if(null === $resolverId = $request->attributes->get('_operation')) {

@@ -17,7 +17,7 @@ class BaseController
         $request = $this->getRequest();
         $args = [];
         if(null !== $resolverId = $request->attributes->get('_operation')) {
-            $args['resolver_id'] = $resolverId;
+            $args['operation_id'] = $resolverId;
         }
         if(null !== $carrier = $request->attributes->get('_carrier')) {
             $args['carrier'] = $carrier;

@@ -1,25 +1,26 @@
 <?php
 namespace Olla\Core\Resolver;
 
-use Olla\Prisma\Metadata;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ApiResolver extends BaseResolver
+use Olla\Prisma\Metadata;
+use Olla\Theme\ThemeInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+class FrontendResolver extends BaseResolver
 {
-    protected $serializer;
     protected $container;
     protected $metatada;
+    protected $theme;
 
-    public function __construct(ContainerInterface $container, Metadata $metadata, SerializerInterface $serializer) {
+    public function __construct(ContainerInterface $container, Metadata $metadata, ThemeInterface $theme) {
         $this->container = $container;
         $this->metadata = $metadata;
-        $this->serializer = $serializer;
+        $this->theme = $theme;
     }
-	public function resolve(array $args = [], $request) {
+    
+    public function resolve(array $args = [], $request) {
         $props = [];
         if(null !== $operation = $this->operation($args['carrier'], $args['operation_id'])) {
+         
             if(null === $controllerId = $operation->getController()) {
                 return;
             }
@@ -35,20 +36,20 @@ class ApiResolver extends BaseResolver
                 }
                 $props = array_merge($props, $result);
             }
+            return $this->view($operation, $args, $props);
         } 
-        return $this->render($args['format'], $props);
+        throw new \Exception("Cant find any operation", 1);
     }
 
-    public function render(string $format, array $data) {
-        $response = [];
-        if(is_array($data)) {
-            foreach ($data as $key => $object) {
-                $serialized = $this->serializer->serialize($object, $format, $options);
-                $response[] = $this->serializer->decode($serialized, $format);
-            }
-        } else {
-            $response = $this->serializer->serialize($data, $format, $options);
-        }
-        return new JsonResponse($response);
+    protected function view($operation, $args, $props) {
+        $template = $operation->getTemplate();
+        $assets = $operation->getAssets();
+        $react = $operation->getReact();
+        $options = $operation->getOptions();
+        $context = [
+            'resource' => $operation->getResource(),
+            'action' => $operation->getAction()
+        ];
+        return $this->theme->render($template, $props, $assets, $react, $options, $context);
     }
 }

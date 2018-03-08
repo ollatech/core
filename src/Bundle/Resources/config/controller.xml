@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+	<services>
+    <service id="olla.api_resolver" class="Olla\Core\Resolver\ApiResolver" >
+      <argument type="service" id="service_container" />
+      <argument type="service" id="olla.metadata" />
+      <argument type="service" id="olla_platform.serializer" />
+    </service>
+    <service id="olla.admin_resolver" class="Olla\Core\Resolver\AdminResolver" >
+      <argument type="service" id="service_container" />
+      <argument type="service" id="olla.metadata" />
+      <argument type="service" id="olla.theme" />
+    </service>
+    <service id="olla.frontend_resolver" class="Olla\Core\Resolver\FrontendResolver" >
+      <argument type="service" id="service_container" />
+      <argument type="service" id="olla.metadata" />
+      <argument type="service" id="olla.theme" />
+    </service>
+    <service id="olla.api_controller" class="Olla\Core\Controller\ApiController" public="true" >
+      <argument type="service" id="request_stack" />
+      <argument type="service" id="olla.api_resolver" />
+    </service>
+    <service id="olla.admin_controller" class="Olla\Core\Controller\AdminController" public="true"  >
+      <argument type="service" id="request_stack" />
+      <argument type="service" id="olla.admin_resolver" />
+    </service>
+    <service id="olla.frontend_controller" class="Olla\Core\Controller\FrontendController" public="true"  >
+      <argument type="service" id="request_stack" />
+      <argument type="service" id="olla.frontend_resolver" />
+    </service>
+  </services>
+</container>

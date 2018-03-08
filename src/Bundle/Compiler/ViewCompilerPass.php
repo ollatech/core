@@ -9,8 +9,9 @@ use Symfony\Component\DependencyInjection\Definition;
 final class ViewCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
-    {
-    	$service = $container->findDefinition('olla.data_converter');
+    { 
+    	
+        /*$service = $container->findDefinition('olla.data_converter');
         $taggesAction = $container->findTaggedServiceIds('olla.format', true);
         foreach ($taggesAction as $id => $tags) {
             $serviceId = $id;
@@ -29,5 +30,6 @@ final class ViewCompilerPass implements CompilerPassInterface
                 'addFormat', [$alias, $serviceId]
             );
         }
+        */
     }
 }

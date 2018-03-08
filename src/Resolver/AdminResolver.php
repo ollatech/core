@@ -1,22 +1,32 @@
 <?php
 namespace Olla\Core\Resolver;
 
+use Olla\Prisma\Metadata;
+use Olla\Theme\ThemeInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class ViewResolver extends BaseResolver
+class AdminResolver extends BaseResolver
 {
+    protected $container;
+    protected $metatada;
+    protected $theme;
+
+    public function __construct(ContainerInterface $container, Metadata $metadata, ThemeInterface $theme) {
+        $this->container = $container;
+        $this->metadata = $metadata;
+        $this->theme = $theme;
+    }
 	public function resolve(array $args = [], $request) {
-        if(!$this->firewall->canAccess($args['operation_id'])) {
-            throw new Exception("Access Denied", 1);
-        }
         $props = [];
         if(null !== $operation = $this->operation($args['carrier'], $args['operation_id'])) {
+            print_r($operation);
             if(null === $controllerId = $operation->getController()) {
                 return;
             }
             $controller = $this->service($controllerId);
             if (is_callable($controller))
             {
-                $result = call_user_func_array($controller, [$operation, $request]);
+                $result = call_user_func_array($controller, [$request]);
                 if($result instanceof View) {
                     return $result;
                 }
@@ -26,16 +36,6 @@ class ViewResolver extends BaseResolver
                 $props = array_merge($props, $result);
             }
         } 
-
-        switch ($args['format']) {
-            case 'html':
-            return $this->view($operation, $args, $props);
-            break;
-            default:
-            return $this->converter->render($args, $props);
-            break;
-        }
+        return $this->view($operation, $args, $props);
     }
-   
-  
 }
