@@ -18,6 +18,11 @@
       <argument type="service" id="olla.metadata" />
       <argument type="service" id="olla.theme" />
     </service>
+    <service id="olla.tool_resolver" class="Olla\Core\Resolver\ToolResolver" >
+      <argument type="service" id="service_container" />
+      <argument type="service" id="olla.metadata" />
+    </service>
+
     <service id="olla.api_controller" class="Olla\Core\Controller\ApiController" public="true" >
       <argument type="service" id="request_stack" />
       <argument type="service" id="olla.api_resolver" />
@@ -29,6 +34,10 @@
     <service id="olla.frontend_controller" class="Olla\Core\Controller\FrontendController" public="true"  >
       <argument type="service" id="request_stack" />
       <argument type="service" id="olla.frontend_resolver" />
+    </service>
+    <service id="olla.tool_controller" class="Olla\Core\Controller\ToolController" public="true"  >
+      <argument type="service" id="request_stack" />
+      <argument type="service" id="olla.tool_resolver" />
     </service>
   </services>
 </container>

@@ -2,39 +2,14 @@
 <container xmlns="http://symfony.com/schema/dic/services"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-  <parameters>
-        <parameter key="olla.api_controller">olla.api_controller</parameter>
-        <parameter key="olla.api_carrier">restapi</parameter>
-        <parameter key="olla.api_format">json</parameter>
-        <parameter key="olla.admin_controller">olla.admin_controller</parameter>
-        <parameter key="olla.admin_carrier">admin</parameter>
-        <parameter key="olla.admin_format">html</parameter>
-        <parameter key="olla.frontend_controller">olla.frontend_controller</parameter>
-        <parameter key="olla.frontend_carrier">frontend</parameter>
-        <parameter key="olla.frontend_format">html</parameter>
-  </parameters>
+
 	<services>
-    <service id="olla.frontend_route" class="Olla\Core\Router\FrontendRoute" >
+    <service id="olla.olla_route" class="Olla\Core\Router\OllaRoute" >
       <argument type="service" id="olla.metadata" />
-      <argument>%olla.frontend_controller%</argument>
-      <argument>%olla.frontend_carrier%</argument>
-      <argument>%olla.frontend_format%</argument>
+      <argument>%olla.controllers%</argument>
+      <argument>%olla.formats%</argument>
+      <argument>%olla.prefixes%</argument>
       <tag name="routing.loader" />
     </service>
-    <service id="olla.api_route" class="Olla\Core\Router\ApiRoute" >
-      <argument type="service" id="olla.metadata" />
-      <argument>%olla.api_controller%</argument>
-      <argument>%olla.api_carrier%</argument>
-      <argument>%olla.api_format%</argument>
-      <tag name="routing.loader" />
-    </service>
-    <service id="olla.admin_route" class="Olla\Core\Router\AdminRoute" >
-      <argument type="service" id="olla.metadata" />
-      <argument>%olla.admin_controller%</argument>
-      <argument>%olla.admin_carrier%</argument>
-      <argument>%olla.admin_format%</argument>
-      <tag name="routing.loader" />
-    </service>
-    
   </services>
 </container>

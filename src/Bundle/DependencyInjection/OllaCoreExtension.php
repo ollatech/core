@@ -25,7 +25,6 @@ final class OllaCoreExtension extends Extension implements PrependExtensionInter
                 'update' => 'olla.api_update_action',
                 'delete' => 'olla.api_delete_action',
                 'item' => 'olla.api_item_action',
-
             ],
             'admin' => [
                 'collection' => 'olla.admin_collection_action',
@@ -53,25 +52,24 @@ final class OllaCoreExtension extends Extension implements PrependExtensionInter
         $admins = [];
         $frontends = [];
         $apis = [];
+        $tools = [];
         $resources = [];
         foreach ($container->getParameter('kernel.bundles_metadata') as $bundle) {
-      
             $basedir = $bundle['path'];
             $admins[] = $basedir.'/Operations/Admin';
             $frontends[] = $basedir.'/Operations/Frontend';
             $apis[] = $basedir.'/Operations/Api';
+            $tools[] = $basedir.'/Operations/Tool';
             $resources[] = $basedir.'/Resource';
         }
         return [
             'admin_module' => $admins,
             'frontend_module' => $frontends,
             'api_module' => $apis,
+            'tool_module' => $tools,
             'resource_module' => $resources
         ];
     }
-
-
-
 
     public function load(array $configs, ContainerBuilder $container)
     { 
@@ -85,6 +83,36 @@ final class OllaCoreExtension extends Extension implements PrependExtensionInter
     private function reconfig(array $configs, ContainerBuilder $container) {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        $controllers = [
+            'api' => 'olla.api_controller',
+            'frontend' => 'olla.frontend_controller',
+            'admin' => 'olla.admin_controller',
+            'tool' => 'olla.tool_controller'
+        ];
+        if(isset($config['controllers'])) {
+            $controllers = array_merge($controllers, $config['controllers']);
+        }
+        $container->setParameter('olla.controllers', $controllers);
+        $formats = [
+            'api' => 'json',
+            'frontend' => 'html',
+            'admin' => 'html',
+            'tool' => 'html'
+        ];
+        if(isset($config['formats'])) {
+            $formats = array_merge($formats, $config['formats']);
+        }
+        $container->setParameter('olla.formats', $formats);
 
+        $prefixes = [
+            'api' => '/api',
+            'frontend' => '/',
+            'admin' => '/admin',
+            'tool' => '/'
+        ];
+        if(isset($config['prefixes'])) {
+            $prefixes = array_merge($prefixes, $config['prefixes']);
+        }
+        $container->setParameter('olla.prefixes', $prefixes);
     }
 }
