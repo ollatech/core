@@ -16,19 +16,10 @@ final class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('olla');
         $rootNode
             ->children()
-                ->arrayNode('provider')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('database')->end()
-                        ->scalarNode('monitor')->end()
-                        ->scalarNode('serializer')->end()
-                        ->scalarNode('validator')->end()
-                        ->scalarNode('guard')->end()
-                        ->scalarNode('gate')->end()
-                        ->scalarNode('middleware')->end()
-                        ->scalarNode('credential')->end()
-                    ->end()
-                ->end()
+                ->scalarNode('restapi')->end()
+                ->scalarNode('graphql')->end()
+                ->scalarNode('version')->end()
+                ->scalarNode('versions')->end()
             ->end();
         return $treeBuilder;
     }

@@ -6,7 +6,7 @@
     <service id="olla.api_resolver" class="Olla\Core\Resolver\ApiResolver" >
       <argument type="service" id="service_container" />
       <argument type="service" id="olla.metadata" />
-      <argument type="service" id="olla_platform.serializer" />
+      <argument type="service" id="serializer" />
     </service>
     <service id="olla.admin_resolver" class="Olla\Core\Resolver\AdminResolver" >
       <argument type="service" id="service_container" />

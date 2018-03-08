@@ -13,4 +13,8 @@ final class CollectionAction
 	public function __invoke(Request $request) {
 		return [];
 	}
+
+	public function execute($args) {
+		return [];
+	}
 }
