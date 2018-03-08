@@ -32,10 +32,10 @@ abstract class  BaseResolver implements ResolverInterface
         $operation = null;
         switch ($carrier) {
             case 'restapi':
-            $operation = $this->metadata->operation($operationId);
+            $operation = $this->metadata->api($operationId);
             break;
-            case 'graphql':
-            $operation = $this->metadata->operation($operationId);
+            case 'tool':
+            $operation = $this->metadata->tool($operationId);
             break;
             case 'frontend':
             $operation = $this->metadata->frontend($operationId);
@@ -44,7 +44,6 @@ abstract class  BaseResolver implements ResolverInterface
             $operation = $this->metadata->admin($operationId);
             break;
             default:
-            $operation = $this->metadata->operation($operationId);
             break;
         }
         if(null === $operation) {
