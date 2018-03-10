@@ -13,20 +13,26 @@ class BaseController
         $this->resolver = $resolver;
     }
 
+     public function __invoke() {
+        $request = $this->getRequest();
+        if(null === $operationId = $request->attributes->get('_operation')) {
+            throw new Exception("Error Processing Request", 1);
+        }
+        if(null === $format = $request->attributes->get('_format')) {
+            throw new Exception("Error Processing Request", 1);
+        }
+        $args = $this->args();
+        return $this->resolver->http($operationId, $format, $request);
+    }
+
     protected function args() {
         $request = $this->getRequest();
         $args = [];
         if(null !== $resolverId = $request->attributes->get('_operation')) {
             $args['operation_id'] = $resolverId;
         }
-        if(null !== $carrier = $request->attributes->get('_carrier')) {
-            $args['carrier'] = $carrier;
-        }
         if(null !== $format = $request->attributes->get('_format')) {
             $args['format'] = $format;
-        }
-        if(null !== $parameters = $request->attributes->get('_parameters')) {
-            $args['parameters'] = $parameters;
         }
         return $args;
     }

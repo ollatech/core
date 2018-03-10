@@ -17,4 +17,13 @@ final class CollectionAction
 	public function execute($args) {
 		return [];
 	}
+
+	public function http(Request $request) {
+		return [];
+	}
+
+	public function graph($args) {
+		return [];
+	}
+
 }

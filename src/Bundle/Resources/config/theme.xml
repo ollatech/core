@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+	<services> 
+		<service id="olla.api_theme" class="Olla\Core\Theme\ApiTheme" >
+
+		</service>
+		<service id="olla.admin_theme" class="Olla\Core\Theme\AdminTheme" >
+			<argument type="service" id="olla.theme" />
+			<argument>%olla.admin_theme_name%</argument>
+		</service>
+		<service id="olla.frontend_theme" class="Olla\Core\Theme\FrontendTheme" >
+			<argument type="service" id="olla.theme" />
+			<argument>%olla.frontend_theme_name%</argument>
+		</service>
+		<service id="olla.tool_theme" class="Olla\Core\Theme\ToolTheme" >
+			<argument type="service" id="olla.theme" />
+			<argument>%olla.tool_theme_name%</argument>
+		</service>
+	</services>
+</container>

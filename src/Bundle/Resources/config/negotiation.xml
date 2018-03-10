@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+	<services> 
+		<service id="olla.api_negotiation" class="Olla\Core\Negotiation\ApiNegotiation" >
+			
+		</service>
+		<service id="olla.admin_negotiation" class="Olla\Core\Negotiation\AdminNegotiation" >
+			
+		</service>
+		<service id="olla.frontend_negotiation" class="Olla\Core\Negotiation\FrontendNegotiation" >
+			
+		</service>
+		<service id="olla.tool_negotiation" class="Olla\Core\Negotiation\ToolNegotiation" >
+			
+		</service>
+	</services>
+</container>

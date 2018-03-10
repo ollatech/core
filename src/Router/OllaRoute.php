@@ -12,12 +12,15 @@ final class OllaRoute extends Loader
 	private $controllers;
 	private $formats;
 	private $prefixes;
-	public function __construct(Metadata $metadata, array $controllers = [], array $formats = [], array $prefixes = [])
+	private $themes;
+
+	public function __construct(Metadata $metadata, array $controllers = [], array $formats = [], array $prefixes = [], array $themes = [])
 	{
 		$this->metadata = $metadata;
 		$this->controllers = $controllers;
 		$this->formats = $formats;
 		$this->prefixes =  $prefixes;
+		$this->themes = $themes;
 	}
 	/**
      * {@inheritdoc}
@@ -50,6 +53,7 @@ final class OllaRoute extends Loader
 		$route['_operation'] = $op->getId();
 		$route['_carrier'] = $carrier;
 		$route['_format'] = $this->formats[$carrier];
+		$route['_theme'] = $this->setTheme($carrier);
 		$path = $this->prefixes[$carrier].$op->getPath();
 		$routeCollection->add($op->getId(), new Route($path, $route+$op->getRoute()+[],
 			[],
@@ -58,6 +62,12 @@ final class OllaRoute extends Loader
 			[],
 			$op->getMethods(),
 			''));
+	}
+
+	private function setTheme($carrier) {
+		if(isset($this->themes[$carrier])) {
+			return $this->themes[$carrier];
+		}
 	}
 	
 	public function supports($resource, $type = null)

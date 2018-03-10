@@ -9,6 +9,7 @@
       <argument>%olla.controllers%</argument>
       <argument>%olla.formats%</argument>
       <argument>%olla.prefixes%</argument>
+      <argument>%olla.active_theme%</argument>
       <tag name="routing.loader" />
     </service>
   </services>

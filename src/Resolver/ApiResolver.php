@@ -1,54 +1,20 @@
 <?php
+
 namespace Olla\Core\Resolver;
 
-use Olla\Prisma\Metadata;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ApiResolver extends BaseResolver
+class ApiResolver extends Resolver
 {
-    protected $serializer;
-    protected $container;
-    protected $metatada;
 
-    public function __construct(ContainerInterface $container, Metadata $metadata, SerializerInterface $serializer) {
-        $this->container = $container;
-        $this->metadata = $metadata;
-        $this->serializer = $serializer;
+    public function middleware($operation) {
+       
     }
-	public function resolve(array $args = [], $request) {
-        $props = [];
-        if(null !== $operation = $this->operation($args['carrier'], $args['operation_id'])) {
-            if(null === $controllerId = $operation->getController()) {
-                return;
-            }
-            $controller = $this->service($controllerId);
-            if (is_callable($controller))
-            {
-                $result = call_user_func_array($controller, [$request]);
-                if($result instanceof View) {
-                    return $result;
-                }
-                if(!is_array($result)) {
-                    throw new \Exception(sprintf("%s Should return an array", $controllerId));
-                }
-                $props = array_merge($props, $result);
-            }
-        } 
-        return $this->render($args['format'], $props);
-    }
-
-    public function render(string $format, array $data) {
-        $response = [];
-        if(is_array($data)) {
-            foreach ($data as $key => $object) {
-                $serialized = $this->serializer->serialize($object, $format, $options);
-                $response[] = $this->serializer->decode($serialized, $format);
-            }
-        } else {
-            $response = $this->serializer->serialize($data, $format, $options);
+    public function operation(string $operationId) {
+        $args = [];
+        $operation =  $this->metadata->api($operationId);
+        if(null === $operation) {
+            return;
         }
-        return new JsonResponse($response);
+        return $operation;
     }
 }

@@ -3,24 +3,34 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 	<services>
+    
     <service id="olla.api_resolver" class="Olla\Core\Resolver\ApiResolver" >
       <argument type="service" id="service_container" />
       <argument type="service" id="olla.metadata" />
-      <argument type="service" id="serializer" />
+      <argument>%olla.api_middleware%</argument>
+      <argument>%olla.api_negotiation%</argument>
+      <argument>%olla.api_theme%</argument>
     </service>
     <service id="olla.admin_resolver" class="Olla\Core\Resolver\AdminResolver" >
       <argument type="service" id="service_container" />
       <argument type="service" id="olla.metadata" />
-      <argument type="service" id="olla.theme" />
+      <argument>%olla.admin_middleware%</argument>
+      <argument>%olla.admin_negotiation%</argument>
+      <argument>%olla.admin_theme%</argument>
     </service>
     <service id="olla.frontend_resolver" class="Olla\Core\Resolver\FrontendResolver" >
       <argument type="service" id="service_container" />
       <argument type="service" id="olla.metadata" />
-      <argument type="service" id="olla.theme" />
+      <argument>%olla.frontend_middleware%</argument>
+      <argument>%olla.frontend_negotiation%</argument>
+      <argument>%olla.frontend_theme%</argument>
     </service>
     <service id="olla.tool_resolver" class="Olla\Core\Resolver\ToolResolver" >
       <argument type="service" id="service_container" />
       <argument type="service" id="olla.metadata" />
+      <argument>%olla.tool_middleware%</argument>
+      <argument>%olla.tool_negotiation%</argument>
+      <argument>%olla.tool_theme%</argument>
     </service>
 
     <service id="olla.api_controller" class="Olla\Core\Controller\ApiController" public="true" >
