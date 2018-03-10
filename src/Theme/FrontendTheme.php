@@ -1,7 +1,7 @@
 <?php
 namespace Olla\Core\Theme;
 
-use Olla\Theme\View as ViewTheme;
+use Olla\Theme\Theme as ViewTheme;
 class FrontendTheme implements ThemeInterface {
 
 	protected $view;

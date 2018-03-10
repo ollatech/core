@@ -3,37 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 	<services>
-		<service id="olla.api_collection_action" class="Olla\Core\Operations\Api\CollectionAction" public="true">
+		<service id="olla.dummy_action" class="Olla\Core\Action\DummyAction" public="true">
 	
 		</service>
-		<service id="olla.api_create_action" class="Olla\Core\Operations\Api\CreateAction" public="true">
-
-		</service>
-		<service id="olla.api_delete_action" class="Olla\Core\Operations\Api\DeleteAction" public="true">
-
-		</service>
-		<service id="olla.api_item_action" class="Olla\Core\Operations\Api\ItemAction" public="true">
-
-		</service>
-		<service id="olla.api_update_action" class="Olla\Core\Operations\Api\UpdateAction" public="true">
-		</service>
-
-		<service id="olla.admin_collection_action" class="Olla\Core\Operations\Admin\CollectionAction" public="true">
-	
-		</service>
-		<service id="olla.admin_create_action" class="Olla\Core\Operations\Admin\CreateAction" public="true">
-
-		</service>
-		<service id="olla.admin_delete_action" class="Olla\Core\Operations\Admin\DeleteAction" public="true">
-
-		</service>
-		<service id="olla.admin_item_action" class="Olla\Core\Operations\Admin\ItemAction" public="true">
-
-		</service>
-		<service id="olla.admin_item_form_action" class="Olla\Core\Operations\Admin\ItemFormAction" public="true">
-
-		</service>
-		<service id="olla.admin_update_action" class="Olla\Core\Operations\Admin\UpdateAction" public="true">
-		</service>
+		
 	</services>
 </container>

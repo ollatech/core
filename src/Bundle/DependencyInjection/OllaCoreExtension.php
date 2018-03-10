@@ -75,20 +75,20 @@ final class OllaCoreExtension extends Extension implements PrependExtensionInter
                     $container->prependExtensionConfig($name, [
                         'operations' => [
                             'api' => [
-                                'search' => 'olla.api_collection_action',
-                                'collection' => 'olla.api_collection_action',
-                                'create' => 'olla.api_create_action',
-                                'update' => 'olla.api_update_action',
-                                'delete' => 'olla.api_delete_action',
-                                'item' => 'olla.api_item_action',
+                                'search' => 'olla.dummy_action',
+                                'collection' => 'olla.dummy_action',
+                                'create' => 'olla.dummy_action',
+                                'update' => 'olla.dummy_action',
+                                'delete' => 'olla.dummy_action',
+                                'item' => 'olla.dummy_action',
                             ],
                             'admin' => [
-                                'collection' => 'olla.admin_collection_action',
-                                'create' => 'olla.admin_create_action',
-                                'update' => 'olla.admin_update_action',
-                                'delete' => 'olla.admin_delete_action',
-                                'item' => 'olla.admin_item_action',
-                                'item_form' => 'olla.admin_item_form_action'
+                                'collection' => 'olla.dummy_action',
+                                'create' => 'olla.dummy_action',
+                                'update' => 'olla.dummy_action',
+                                'delete' => 'olla.dummy_action',
+                                'item' => 'olla.dummy_action',
+                                'item_form' => 'olla.dummy_action'
                             ],
                         ],
                         'dirs' => $this->getDirs($container)
