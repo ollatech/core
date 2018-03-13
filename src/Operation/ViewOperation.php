@@ -9,6 +9,13 @@ abstract class  ViewOperation
 
     protected $operation;
 
+    protected $operation_type;
+
+    public function setOperationType($operation_type) {
+        $this->operation_type = $operation_type;
+        return $this;
+    }
+
 	public function setTheme($theme) {
 		$this->theme = $theme;
 		return $this;
@@ -25,6 +32,8 @@ abstract class  ViewOperation
         $react = $this->operation->getReact();
         $options = $this->operation->getOptions();
         $context = [
+            'operation_type' => $this->operation_type,
+            'operation' => $this->operation->getId(),
             'resource' => $this->operation->getResource(),
             'action' => $this->operation->getAction()
         ];

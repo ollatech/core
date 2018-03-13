@@ -9,6 +9,12 @@ abstract class  MultiOperation
     protected $theme;
     protected $operation;
     protected $negotiation;
+    protected $operation_type;
+
+    public function setOperationType($operation_type) {
+        $this->operation_type = $operation_type;
+        return $this;
+    }
 
     public function setFormat($format) {
         $this->format = $format;
