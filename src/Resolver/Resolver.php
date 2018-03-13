@@ -44,14 +44,14 @@ abstract class  Resolver implements ResolverInterface
             if($controller instanceof MultiOperation) {
                 return $controller
                 ->setTheme($this->theme)
-                ->setNegotiator($this->negotiation)
+                ->setNegotiation($this->negotiation)
                 ->setFormat($format)
                 ->setOperation($operation)
                 ->http($request);
             }
             if($controller instanceof ApiOperation) {
                 return $controller
-                ->setNegotiator($this->negotiation)
+                ->setNegotiation($this->negotiation)
                 ->setFormat($format)
                 ->setOperation($operation)
                 ->http($request);

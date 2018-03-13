@@ -4,7 +4,6 @@ namespace Olla\Core\Middleware;
 class Middleware implements MiddlewareInterface {
     
 	private $providers;
-
 	public function __construct(array $providers)
 	{
 		$this->providers = $providers;

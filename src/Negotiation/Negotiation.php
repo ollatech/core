@@ -3,7 +3,7 @@ namespace Olla\Core\Negotiation;
 
 class Negotiation implements NegotiationInterface {
     
-	private $providers;
+	protected $providers;
 
 	public function __construct(array $providers)
 	{
@@ -22,5 +22,6 @@ class Negotiation implements NegotiationInterface {
     			continue;
     		}
     	}
+        return new \Exception("Can't handle this format, please check with developer");
     }
 }

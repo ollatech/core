@@ -1,7 +1,7 @@
 <?php
 namespace Olla\Core\Operation;
 
-abstract class  ApiOperation 
+abstract class  BaseOperation 
 {
 	protected $format;
 	protected $theme;
@@ -31,7 +31,4 @@ abstract class  ApiOperation
 		return $this->operation;
 	}
 
-	protected function output(array $props = [], string $format = null) {
-		return $this->negotiation->output($this->format, $props);
-	}
 }

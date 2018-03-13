@@ -10,6 +10,7 @@ class ApiResolver extends Resolver
        
     }
     public function operation(string $operationId) {
+        
         $args = [];
         $operation =  $this->metadata->api($operationId);
         if(null === $operation) {

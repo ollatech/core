@@ -41,32 +41,34 @@ final class OllaCoreExtension extends Extension implements PrependExtensionInter
                         'tool' => 'olla.tool_theme'
                     ],
                     'theme' => [
-                        'api' => 'api',
-                        'frontend' => 'frontend',
-                        'admin' => 'admin',
-                        'tool' => 'tool'
+                        'api' => 'api_theme',
+                        'frontend' => 'frontend_theme',
+                        'account' => 'account_theme',
+                        'console' => 'console_theme',
+                        'admin' => 'admin_theme',
+                        'tool' => 'tool_theme'
                     ]
                 ]);
                 break;
                 case 'olla_prisma':
-                if (!isset($bundles['OllaPlatformBundle'])) {
+                if (isset($bundles['OllaPlatformBundle'])) {
                     $container->prependExtensionConfig($name, [
                         'operations' => [
                             'api' => [
-                                'search' => 'olla_platform.api_collection_action',
-                                'collection' => 'olla_platform.api_collection_action',
-                                'create' => 'olla_platform.api_create_action',
-                                'update' => 'olla_platform.api_update_action',
-                                'delete' => 'olla_platform.api_delete_action',
-                                'item' => 'olla_platform.api_item_action',
+                                'search' => 'olla_platform.api_collection_operation',
+                                'collection' => 'olla_platform.api_collection_operation',
+                                'create' => 'olla_platform.api_create_operation',
+                                'update' => 'olla_platform.api_update_operation',
+                                'delete' => 'olla_platform.api_delete_operation',
+                                'item' => 'olla_platform.api_item_operation',
                             ],
                             'admin' => [
-                                'collection' => 'olla_platform.admin_collection_action',
-                                'create' => 'olla_platform.admin_create_action',
-                                'update' => 'olla_platform.admin_update_action',
-                                'delete' => 'olla_platform.admin_delete_action',
-                                'item' => 'olla_platform.admin_item_action',
-                                'item_form' => 'olla_platform.admin_item_form_action'
+                                'collection' => 'olla_platform.admin_collection_operation',
+                                'create' => 'olla_platform.admin_create_operation',
+                                'update' => 'olla_platform.admin_update_operation',
+                                'delete' => 'olla_platform.admin_delete_operation',
+                                'item' => 'olla_platform.admin_item_operation',
+                                'item_form' => 'olla_platform.admin_item_form_operation'
                             ],
                         ],
                         'dirs' => $this->getDirs($container)
@@ -75,20 +77,20 @@ final class OllaCoreExtension extends Extension implements PrependExtensionInter
                     $container->prependExtensionConfig($name, [
                         'operations' => [
                             'api' => [
-                                'search' => 'olla.dummy_action',
-                                'collection' => 'olla.dummy_action',
-                                'create' => 'olla.dummy_action',
-                                'update' => 'olla.dummy_action',
-                                'delete' => 'olla.dummy_action',
-                                'item' => 'olla.dummy_action',
+                                'search' => 'olla.dummy_operation',
+                                'collection' => 'olla.dummy_operation',
+                                'create' => 'olla.dummy_operation',
+                                'update' => 'olla.dummy_operation',
+                                'delete' => 'olla.dummy_operation',
+                                'item' => 'olla.dummy_operation',
                             ],
                             'admin' => [
-                                'collection' => 'olla.dummy_action',
-                                'create' => 'olla.dummy_action',
-                                'update' => 'olla.dummy_action',
-                                'delete' => 'olla.dummy_action',
-                                'item' => 'olla.dummy_action',
-                                'item_form' => 'olla.dummy_action'
+                                'collection' => 'olla.dummy_operation',
+                                'create' => 'olla.dummy_operation',
+                                'update' => 'olla.dummy_operation',
+                                'delete' => 'olla.dummy_operation',
+                                'item' => 'olla.dummy_operation',
+                                'item_form' => 'olla.dummy_operation'
                             ],
                         ],
                         'dirs' => $this->getDirs($container)

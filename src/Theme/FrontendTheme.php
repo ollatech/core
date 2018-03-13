@@ -13,6 +13,6 @@ class FrontendTheme implements ThemeInterface {
 	}
 
 	public function render($template, $props, $assets, $react, $options, $context) {
-		return $this->view->setTheme($this->themeName)->render($template, $props, $assets, $react, $options, $context);
+		return $this->view->render($template, $props, $assets, $react, $options, $context);
 	}
 }
